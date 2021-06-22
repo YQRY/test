@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace 数间和
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while(true)   //条件永远为真，保证持续循环
+            {
+                WriteLine("输入第一个数：");
+                string str1 = ReadLine();
+                WriteLine("输入第二个数：");
+                string str2 = ReadLine();
+                int num1 = 0;  
+                int num2 = 0;
+                try  //异常捕捉机制
+                {
+                    num1 = Convert.ToInt32(str1);
+                    num2 = Convert.ToInt32(str2);
+                }
+                catch(Exception)
+                {
+                    WriteLine("输入有误，请重新输入！");
+                    //ReadKey();
+                    return;   //跳出当前函数，继续从头运行
+                }
+                if (num1 > num2)
+                {
+                    WriteLine("第一个数必须小于第二个数，请重新输入！");
+                    ReadKey();
+                    Clear();      //清除控制台缓冲区和相应的控制台窗口的显示信息。
+                    continue;    //程序继续运行
+                }
+                int sum = 0;
+                for(int i = num1;i<=num2;i++)
+                {
+                    sum += i;
+                }
+                //注意下面这种表达方式，等同于 WriteLine($"{num1}和{num2}之间所有整数的和是{sum}");
+                WriteLine("{0}和{1}之间所有整数的和是{2}",num1,num2,sum); 
+                WriteLine("是否退出程序？（Y|N）");
+                string flag = ReadLine();
+                if(flag == "Y")
+                {
+                    break;    //如果是Y,结束运行，退出程序
+                }
+                ReadKey();
+            }
+            
+        }
+    }
+}
