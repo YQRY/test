@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace sort
+{
+    class Paixu  //编写Paixu类
+    {
+        public void Sort(string str)  //Sort方法，包含一个string返回值参数
+        {
+            char[] num = str.ToCharArray();
+            bool t = true;
+            for(int i=0;i < str.Length;i++)
+            {
+                if (num[i] < '0' || num[i] > '9')
+                    t = false;
+                    break;
+            }
+            if (t == true)
+            {
+                for (int i = 0; i < num.Length; i++)
+                {
+                    for (int j = 0; j < num.Length - 1 - i; j++)
+                    {
+                        if (num[j] > num[j + 1])
+                        {
+                            char tem = num[j];
+                            num[j] = num[j + 1];
+                            num[j + 1] = tem;
+                        }
+                    }
+                }
+                string Num = new string(num);
+                WriteLine(Num);
+            }
+            else
+            {
+                for(int i = 0;i<num.Length/2;i++)
+                {
+                    char tem = num[i];
+                    num[i] = num[num.Length-1-i];
+                    num[num.Length - 1 - i] = tem;
+                }
+                string str2 = new string(num);
+                WriteLine(str2);
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Write("输入字符串：");
+            string str = ReadLine();
+            Paixu pa = new Paixu();
+            pa.Sort(str);
+            ReadKey();
+        }
+    }
+}
